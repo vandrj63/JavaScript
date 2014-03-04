@@ -1,0 +1,72 @@
+<html>
+<head>
+
+</head>
+
+
+<body>
+<script type = "text/javascript">
+<!--
+var name_list = new Array();
+
+var new_name, new_phone, new_nick, new_address, index, last, last1;
+// Loop to get a new name and insert it
+while (new_name = prompt("Please type a new name", "")) {
+//new obj
+var myFriend = new Object();
+myFriend.Name = new_name;
+
+new_phone = prompt("Enter phone number", "");
+myFriend.number = new_phone;
+
+new_nick = prompt("Enter Nick Name for your friend", "");
+myFriend.nickName = new_nick;
+
+new_address = prompt("Enter the address", "");
+myFriend.address = new_address;
+
+
+// Loop to find the place for the new name
+   last = name_list.length - 1;
+      while (last >= 0 && name_list[last] > myFriend) { 
+      name_list[last + 1] = name_list[last];
+      last--;
+   	}
+
+// Insert the new name into its spot in the array
+   name_list[last + 1] = myFriend;
+
+function sortList(property){
+return function(a,b){
+if(a[property] < b[property]){
+return -1;
+}else if(a[property] > b[property]){
+return 1;
+}else{
+return 0;
+}
+}
+}
+
+name_list.sort(sortList("Name"));
+
+// Display the new array
+
+var str = "The list after the new addition";
+document.write(str);
+document.write("<br/>");
+
+for(index = 0; index < name_list.length; index++){
+for (var prop in myFriend){
+document.write(name_list[index][prop], "<br/>");
+}
+document.write("</p>");
+}
+  
+} //** end of the outer while loop
+// -->
+</script>
+</body>
+
+
+</html>

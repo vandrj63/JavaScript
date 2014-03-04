@@ -1,0 +1,201 @@
+
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE html PUBLIC "-//w3c//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<!-- dragNDrop.html
+     An example to illustrate the DOM 2 Event model
+     Allows the user to drag and drop words to complete
+     a short poem
+     -->
+<html xmlns = "http://www.w3.org/1999/xhtml">
+  <head>
+    <title> Drag and drop </title>
+    <script type = "text/javascript">
+<!--
+// Define variables for the values computed by
+//  the grabber event handler but needed by mover
+//  event handler
+var diffX, diffY, theElement;
+var counter;
+
+// *******************************************************
+
+// The event handler function for grabbing the word
+
+      function grabber(event) {
+
+// Set the global variable for the element to be moved
+
+        theElement = event.currentTarget;
+
+// Determine the position of the word to be grabbed,
+//  first removing the units from left and top
+
+        var posX = parseInt(theElement.style.left);
+        var posY = parseInt(theElement.style.top);
+
+// Compute the difference between where it is and
+//  where the mouse click occurred
+
+        diffX = event.clientX - posX;
+        diffY = event.clientY - posY;
+
+// Now register the event handlers for moving and
+//  dropping the word
+
+        document.addEventListener("mousemove", mover, true);
+        document.addEventListener("mouseup", dropper, true);
+
+// Stop propagation of the event and stop any default
+//  browser action
+
+        event.stopPropagation();
+        event.preventDefault();
+
+}  //** end of grabber
+
+// *******************************************************
+
+// The event handler function for moving the word
+
+      function mover(event) {
+// Compute the new position, add the units, and move the word
+
+        theElement.style.left = (event.clientX - diffX) + "px";
+        theElement.style.top = (event.clientY - diffY) + "px";
+
+// Prevent propagation of the event
+
+        event.stopPropagation();
+}  //** end of mover
+
+// *********************************************************
+// The event handler function for dropping the word
+
+      function dropper(event) {
+
+// Unregister the event handlers for mouseup and mousemove
+
+
+        posX = parseInt(theElement.style.left);
+        posY = parseInt(theElement.style.top);
+
+
+	if(theElement.id == "lemons"){
+	if(posX >= 300 && posX <= 600 && posY >= 0 && posY <= 300){
+	alert("Correct");
+	counter++;
+	}
+	}
+	if(theElement.id == "animals"){
+	if(posX >= 600 && posX <= 900 && posY >= 0 && posY <= 300){
+	alert("Correct");
+	counter++;
+	}
+	}
+	if(theElement.id == "minerals"){
+	if(posX >= 0 && posX <= 300 && posY >= 0 && posY <= 300){
+	alert("Correct");
+	counter++;
+	}
+	}		
+        document.removeEventListener("mouseup", dropper, true);
+        document.removeEventListener("mousemove", mover, true);
+
+	if(counter == 20){
+		alert("All sorted");
+}
+
+// Prevent propagation of the event
+
+        event.stopPropagation();
+}  //** end of dropper
+
+// *********************************************************
+// -->
+    </script>
+  </head>
+
+  <body style = "font-size: 20;">
+<script type="text/javascript">
+<!--
+counter = 1;
+document.write(counter, "<br/>");
+// -->
+</script>
+<br><br>
+<p>
+  <span style = "position: absolute; top: 0px; left: 0px;"> 
+   <img src="minerals.jpg" alt="A playground" width="300" height= "300"  border= "0" align="left" onmousedown = "mouseFunction(event);"/>
+</span>
+  <span style = "position: absolute; top: 0px; left: 300px;"> 
+   <img src="vegatables.jpg" alt="A playground" width="300" height= "300"  border= "0" align="center" onmousedown = "mouseFunction2(event);"/>
+</span>
+<span style = "position: absolute; top: 0px; left: 600px;">
+   <img src="farm.jpg" alt="A playground" width="300" height= "300" border= "0" align="right" onmousedown = "mouseFunction3(event);"/>
+</span>
+   </p>
+    <p>
+      
+
+      <span id = "lemons" style = "position: absolute; top: 500px; left: 0px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> lemons </span>
+      <span id = "animals" style = "position: absolute; top: 500px; left: 75px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> cats </span>
+      <span id = "animals" style = "position: absolute; top: 500px; left: 150px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> cows </span>
+<span id = "minerals" style = "position: absolute; top: 500px; left: 225px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> Davidlite </span>
+      <span id = "minerals" style = "position: absolute; top: 500px; left: 300px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> Diamond </span>
+      <span id = "animals" style = "position: absolute; top: 500px; left: 375px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> rabbits </span>
+      <span id = "animals" id = "animals" style = "position: absolute; top: 500px; left: 450px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> turtles </span>
+      <span id = "lemons" id = "lemons" style = "position: absolute; top: 550px; left: 0px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> cherries </span>
+      <span id = "minerals" style = "position: absolute; top: 550px; left: 75px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> Emerald </span>
+      <span id = "lemons" style = "position: absolute; top: 550px; left: 150px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> bananas </span>
+      <span id = "minerals" style = "position: absolute; top: 550px; left: 225px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> allanite </span>
+      <span id = "animals" style = "position: absolute; top: 550px; left: 300px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> horses </span>
+      <span id = "minerals" style = "position: absolute; top: 550px; left: 375px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> Dolomite </span>
+      <span id = "animals" style = "position: absolute; top: 550px; left: 450px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> cows </span>
+      <span id = "lemons" style = "position: absolute; top: 600px; left: 0px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> Pineapple </span>
+      <span id = "minerals" style = "position: absolute; top: 600px; left: 75px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> adelite </span>
+      <span id = "lemons" style = "position: absolute; top: 600px; left: 150px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> orange </span>
+      <span id = "lemons" style = "position: absolute; top: 600px; left: 225px;
+                     background-color: lightgrey;"
+            onmousedown = "grabber(event);"> apple </span>
+   <span id = "animals" style = "position: absolute; top: 600px; left: 300px;
+background-color: lightgrey;"
+            onmousedown = "grabber(event);"> dogs </span>
+    </p>
+  </body>
+</html>

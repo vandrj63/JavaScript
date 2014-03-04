@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type = "text/javascript">
+function planeChoice (plane) {
+    var plane;
+var s;
+    switch (plane) {
+        case 152:
+           s="A small two-place-airplane for flight training";
+            break;
+        case 172:
+            s="The smaller of two four-place airplanes";
+            break;
+         case 182:
+            s="The larger of two four-place airplanes";
+            break;
+        case 210:
+            s="A six-place high-performance airplane";
+            break;
+        default:
+            s="Error in JavaScript function planeChoice";                }
+                alert(s);}
+</script>
+</head>
+<body>
+<form id = "myForm"  action = "">
+    <p>
+    <input type = "radio"  name = "planeButton"
+           onclick = "planeChoice(152)" />
+       Model 152
+    <br />
+      <input type = "radio"  name = "planeButton"
+             onclick = "planeChoice(172)" />
+       Model 172 (Skyhawk)
+    <br />
+      <input type = "radio"  name = "planeButton"
+             onclick = "planeChoice(182)" />
+       Model 182 (Skylane)
+    <br />
+    <input type = "radio"  name = "planeButton"
+           onclick = "planeChoice(210)" />
+       Model 210 (Centurian)
+    </p>
+</form>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Employee Form</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script type = "text/javascript">
+<!--
+
+function phone(t) {
+var x = t.value;
+//var y = x.split('-');
+
+//x = y.join('-');
+if (x.length == 3 || x.length == 7) 
+x += '-';
+t.value = x;
+}
+
+//-->
+ 
+</script>
+</head>
+
+<body>
+<form id = "info">
+<table>
+<tr>
+	<td colspan="2" align="center"><b>Employee Information</b></td>
+</tr>
+
+<tr>
+	<td>
+		Phone Number: 
+	</td>
+	<td>
+		<input type= "text" name ="phoneNumber" maxlength = "12" onkeyup="phone(this)">
+	</td>
+</tr>
+
+
+
+</table>
+<div class="form_result">&nbsp;</div>
+</form>
+
+</script>
+
+</body>
+</html>
